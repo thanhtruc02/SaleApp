@@ -1,5 +1,24 @@
 <{% extends 'admin/master.html' %}
 
 {% block body %}
-<h1 class="text-center text-ìno">CHÀO MỪNG ĐẾN VỚI TRANG QUẢN TRỊ</h1>
+
+{% if current_user.is_authenticated %}
+
+<h1 class="text-center text-info">CHÀO MỪNG ĐẾN VỚI TRANG QUẢN TRỊ</h1>
+<h2 class="text-info">Chào {{current_user.name}}!</h2>
+{% else %}
+<h1 class="text-center text-success">ĐĂNG NHẬP QUẢN TRỊ</h1>
+<form method="post" action="/action_page.php">
+  <div class="mb-3 mt-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="text" class="form-control" id="email" name="username" placeholder="Enter email" name="email">
+  </div>
+  <div class="mb-3">
+    <label for="pwd" class="form-label">Password:</label>
+    <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password" name="pswd">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endif %}
 {% endblock %}
