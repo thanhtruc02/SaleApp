@@ -8,17 +8,17 @@
 <h2 class="text-info">Chào {{current_user.name}}!</h2>
 {% else %}
 <h1 class="text-center text-success">ĐĂNG NHẬP QUẢN TRỊ</h1>
-<form method="post" action="/action_page.php">
+<form method="post" action="/admin/login">
   <div class="mb-3 mt-3">
-    <label for="email" class="form-label">Email:</label>
-    <input type="text" class="form-control" id="email" name="username" placeholder="Enter email" name="email">
+    <label for="username" class="form-label">Ten dang nhap:</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Ten dang nhap">
   </div>
   <div class="mb-3">
     <label for="pwd" class="form-label">Password:</label>
     <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password" name="pswd">
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Dang nhap</button>
 </form>
 {% endif %}
 {% endblock %}
