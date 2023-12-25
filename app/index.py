@@ -76,7 +76,7 @@ def cart():
     return render_template('cart.html')
 
 
-@app.run("/login")
+@app.route("/login")
 def process_user_login():
     return render_template('login.html')
 
