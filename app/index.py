@@ -32,6 +32,7 @@ def admin_login():
 @app.route('/api/cart', methods=['post'])
 def add_to_cart():
     data = request.json
+
     cart = session.get('cart')
     if cart is None:
         cart = {}
