@@ -2,4 +2,17 @@
 
 {% block content %}
 <h1 class="text-center text-info mt-1">ĐĂNG NHẬP NGƯỜI DÙNG</h1>
+
+<form method="post" action="">
+  <div class="mb-3 mt-3">
+    <label for="username" class="form-label">Ten dang nhap:</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Ten dang nhap">
+  </div>
+  <div class="mb-3">
+    <label for="pwd" class="form-label">Password:</label>
+    <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Dang nhap</button>
+</form>
 {% endblock %}

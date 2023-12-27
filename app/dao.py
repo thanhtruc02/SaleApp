@@ -2,6 +2,7 @@ from app.models import Category, Product, User, Receipt, ReceiptDetails
 from app import app, db
 import hashlib
 from flask_login import current_user
+import cloudinary.uploader
 
 def load_categories():
     return Category.query.all()
@@ -39,6 +40,8 @@ def auth_user(username, password):
 
     return User.query.filter(User.username.__eq__(username.strip()),
                              User.password.__eq__(password)).first()
+
+
 def add_receipt(cart):
     if cart:
         receipt = Receipt(user=current_user)
@@ -49,3 +52,15 @@ def add_receipt(cart):
             db.session.add(d)
 
         db.session.commit()
+
+
+def add_user(name, username, password, avatar):
+    password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
+    u = User(name=name, username=username,
+             password=password, avatar='https://vtv1.mediacdn.vn/2019/10/10/photo-1-15706463929181755249740.jpg')
+    if avatar:
+        res = cloudinary.uploader.upload(avatar)
+        print(res)
+        u.avatar = res['secure_url']
+    db.session.add(u)
+    db.session.commit()

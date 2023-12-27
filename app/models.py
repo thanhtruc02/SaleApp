@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(50), nullable=False, unique=True)
     username = Column(String(50), nullable=False, unique=True)
-    password = Column(String(50), nullable=False, unique=True)
+    password = Column(String(50), nullable=False, unique=False)
     avatar = Column(String(100), default='https://vtv1.mediacdn.vn/2019/10/10/photo-1-15706463929181755249740.jpg')
     user_role = Column(Enum(UserRoleEnum), default=UserRoleEnum.USER)
     receipts = relationship('Receipt', backref='user', lazy=True)

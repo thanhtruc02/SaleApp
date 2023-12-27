@@ -10,5 +10,15 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:%s@localhost/saled
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["PAGE_SIZE"] = 4
 
+
+import cloudinary
+
+cloudinary.config(
+    cloud_name="duxbitj2i",
+    api_key="596724224287136",
+    api_secret="hSYGJmknTcF6SD2IP7cbxboBBM4"
+)
+
+
 db = SQLAlchemy(app=app)
 login = LoginManager(app=app)
