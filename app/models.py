@@ -5,6 +5,7 @@ from flask_login import UserMixin
 import enum
 from datetime import datetime
 
+
 class UserRoleEnum(enum.Enum):
     USER = 1
     ADMIN = 2
@@ -18,7 +19,6 @@ class User(db.Model, UserMixin):
     avatar = Column(String(100), default='https://vtv1.mediacdn.vn/2019/10/10/photo-1-15706463929181755249740.jpg')
     user_role = Column(Enum(UserRoleEnum), default=UserRoleEnum.USER)
     receipts = relationship('Receipt', backref='user', lazy=True)
-
 
     def __str__(self):
         return self.name
@@ -43,9 +43,9 @@ class Product(db.Model):
     category_id = Column(Integer, ForeignKey(Category.id), nullable=False)
     receipt_details = relationship('ReceiptDetails', backref='product', lazy=True)
 
-
     def __str__(self):
         return self.name
+
 
 class BaseModel(db.Model):
     __abstract__ = True
@@ -65,7 +65,6 @@ class ReceiptDetails(BaseModel):
     price = Column(Float, default=0)
     receipt_id = Column(Integer, ForeignKey(Receipt.id), nullable=False)
     product_id = Column(Integer, ForeignKey(Product.id), nullable=False)
-
 
 
 if __name__ == '__main__':

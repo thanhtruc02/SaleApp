@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, session, jsonify
 import dao
 import utils
 from app import app, login
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 
 
 @app.route('/')
@@ -70,6 +70,19 @@ def delete_cart(product_id):
 
     session['cart'] = cart
     return jsonify(utils.count_cart(cart))
+
+
+@app.route('/api/pay', methods=['post'])
+@login_required
+def pay():
+    try:
+        dao.add_receipt(session.get('cart'))
+    except:
+        return jsonify({'status': 500, 'err_msg': "..."})
+    else:
+        del session['cart']
+        return jsonify({'status': 200})
+
 
 
 @app.route('/cart')
